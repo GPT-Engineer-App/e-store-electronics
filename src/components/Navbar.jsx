@@ -1,10 +1,10 @@
 import { Box, Flex, Link, Spacer, Text, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { SearchIcon } from "@chakra-ui/icons";
-import { useState } from "react";
+
 
 const Navbar = ({ setSearchQuery }) => {
-  const [searchQuery, setSearchQuery] = useState("");
+  
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -37,8 +37,7 @@ const Navbar = ({ setSearchQuery }) => {
             <Input
               type="text"
               placeholder="Search products"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={handleSearchChange}
               bg="white"
               color="black"
             />
