@@ -1,7 +1,15 @@
-import { Box, Flex, Link, Spacer, Text } from "@chakra-ui/react";
+import { Box, Flex, Link, Spacer, Text, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
+import { SearchIcon } from "@chakra-ui/icons";
+import { useState } from "react";
 
-const Navbar = () => {
+const Navbar = ({ setSearchQuery }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
   return (
     <Box bg="blue.600" px={4} py={2} color="white">
       <Flex align="center">
@@ -22,6 +30,19 @@ const Navbar = () => {
           <Link as={RouterLink} to="/contact" px={2}>
             Contact Us
           </Link>
+          <InputGroup maxW="400px" mx={4}>
+            <InputLeftElement pointerEvents="none">
+              <SearchIcon color="gray.300" />
+            </InputLeftElement>
+            <Input
+              type="text"
+              placeholder="Search products"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              bg="white"
+              color="black"
+            />
+          </InputGroup>
         </Flex>
       </Flex>
     </Box>
