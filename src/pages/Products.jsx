@@ -6,14 +6,18 @@ const sampleProducts = [
   { id: 3, name: "Headphones", price: "$199", image: "/images/headphones.jpg" },
 ];
 
-const Products = () => {
+const Products = ({ searchQuery }) => {
+  const filteredProducts = sampleProducts.filter(product =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <Box p={4}>
       <Heading as="h2" size="xl" mb={4}>
         Products
       </Heading>
       <Grid templateColumns="repeat(auto-fill, minmax(200px, 1fr))" gap={6}>
-        {sampleProducts.map((product) => (
+        {filteredProducts.map((product) => (
           <Box key={product.id} borderWidth="1px" borderRadius="lg" overflow="hidden" p={4}>
             <Image src={product.image} alt={product.name} boxSize="200px" objectFit="cover" mb={4} />
             <VStack spacing={2}>
